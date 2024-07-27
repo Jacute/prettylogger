@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	logger "github.com/jacute/coloredlogger"
+	logger "github.com/jacute/prettylogger"
 )
 
 func main() {

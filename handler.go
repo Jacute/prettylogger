@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/jacute/coloredlogger/colors"
+	"github.com/jacute/prettylogger/colors"
 )
 
 type Handler struct {
