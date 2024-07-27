@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	logger "github.com/jacute/prettylogger"
+	prettylogger "github.com/jacute/prettylogger"
 )
 
 func main() {
@@ -12,7 +12,7 @@ func main() {
 		Level: slog.LevelDebug,
 	}
 
-	logger := slog.New(logger.NewColoredHandler(os.Stdout, &opts))
+	logger := slog.New(prettylogger.NewColoredHandler(os.Stdout, &opts))
 	logger.Debug("Debug test")
 	logger.Info("Info test")
 	logger.Warn("Warning test")
