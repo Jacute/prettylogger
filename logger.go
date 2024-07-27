@@ -2,42 +2,47 @@ package prettylogger
 
 import (
 	"bytes"
+	"io"
 	"log/slog"
 	"sync"
+
+	"github.com/jacute/prettylogger/handlers"
 )
 
-func NewColoredHandler(opts *slog.HandlerOptions) *Handler {
+func NewColoredHandler(w io.Writer, opts *slog.HandlerOptions) *handlers.TextHandler {
 	if opts == nil {
 		opts = &slog.HandlerOptions{Level: slog.LevelDebug}
 	}
 	b := &bytes.Buffer{}
-	return &Handler{
-		h: slog.NewJSONHandler(b, &slog.HandlerOptions{
+	return &handlers.TextHandler{BaseHandler: &handlers.BaseHandler{
+		H: slog.NewJSONHandler(b, &slog.HandlerOptions{
 			Level:       opts.Level,
 			AddSource:   opts.AddSource,
-			ReplaceAttr: supressDefaults(opts.ReplaceAttr),
+			ReplaceAttr: handlers.SupressDefaults(opts.ReplaceAttr),
 		}),
-		b:    b,
-		m:    &sync.Mutex{},
-		opts: opts,
-	}
+		B:    b,
+		M:    &sync.Mutex{},
+		Opts: opts,
+		W:    w,
+	}}
 }
 
-func NewJsonHandler(opts *slog.HandlerOptions) *JsonHandler {
+func NewJsonHandler(w io.Writer, opts *slog.HandlerOptions) *handlers.JsonHandler {
 	if opts == nil {
 		opts = &slog.HandlerOptions{Level: slog.LevelDebug}
 	}
 	b := &bytes.Buffer{}
-	return &JsonHandler{
-		h: slog.NewJSONHandler(b, &slog.HandlerOptions{
+	return &handlers.JsonHandler{BaseHandler: &handlers.BaseHandler{
+		H: slog.NewJSONHandler(b, &slog.HandlerOptions{
 			Level:       opts.Level,
 			AddSource:   opts.AddSource,
 			ReplaceAttr: opts.ReplaceAttr,
 		}),
-		b:    b,
-		m:    &sync.Mutex{},
-		opts: opts,
-	}
+		B:    b,
+		M:    &sync.Mutex{},
+		Opts: opts,
+		W:    w,
+	}}
 }
 
 func Err(err error) slog.Attr {

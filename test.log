@@ -1,0 +1,44 @@
+{
+ "error": "test error",
+ "level": "DEBUG",
+ "msg": "Debug test",
+ "time": "2024-07-27T22:54:20.871702271+07:00"
+}
+{
+ "level": "ERROR",
+ "msg": "Error test",
+ "time": "2024-07-27T22:54:20.871816321+07:00"
+}
+{
+ "error": "test error",
+ "level": "DEBUG",
+ "msg": "Debug test",
+ "time": "2024-07-27T22:54:32.085460412+07:00"
+}
+{
+ "level": "ERROR",
+ "msg": "Error test",
+ "time": "2024-07-27T22:54:32.085534585+07:00"
+}
+{
+ "error": "test error",
+ "level": "DEBUG",
+ "msg": "Debug test",
+ "time": "2024-07-27T22:55:20.930614805+07:00"
+}
+{
+ "level": "ERROR",
+ "msg": "Error test",
+ "time": "2024-07-27T22:55:20.930738984+07:00"
+}
+{
+ "error": "test error",
+ "level": "DEBUG",
+ "msg": "Debug test",
+ "time": "2024-07-27T22:55:22.376842911+07:00"
+}
+{
+ "level": "ERROR",
+ "msg": "Error test",
+ "time": "2024-07-27T22:55:22.376904329+07:00"
+}

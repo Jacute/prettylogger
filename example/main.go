@@ -3,14 +3,26 @@ package main
 import (
 	"fmt"
 	"log/slog"
+	"os"
 
 	prettylogger "github.com/jacute/prettylogger"
 )
 
 func main() {
-	logger := slog.New(prettylogger.NewColoredHandler(nil))
-	logger.Debug("Debug test", prettylogger.Err(fmt.Errorf("Aboba")))
-	logger.Info("Info test")
-	logger.Warn("Warning test")
-	logger.Error("Error test")
+	consoleLogger := slog.New(prettylogger.NewColoredHandler(os.Stdout, nil))
+
+	consoleLogger.Debug("Debug test", prettylogger.Err(fmt.Errorf("test error")))
+	consoleLogger.Info("Info test")
+	consoleLogger.Warn("Warning test")
+	consoleLogger.Error("Error test")
+
+	file, err := os.OpenFile("test.log", os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0644)
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	fileLogger := slog.New(prettylogger.NewJsonHandler(file, nil))
+	fileLogger.Debug("Debug test", prettylogger.Err(fmt.Errorf("test error")))
+	fileLogger.Error("Error test")
 }
