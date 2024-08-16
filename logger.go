@@ -14,7 +14,7 @@ func NewColoredHandler(w io.Writer, opts *slog.HandlerOptions) *handlers.TextHan
 		opts = &slog.HandlerOptions{Level: slog.LevelDebug}
 	}
 	b := &bytes.Buffer{}
-	return &handlers.TextHandler{BaseHandler: &handlers.BaseHandler{
+	return &handlers.TextHandler{
 		H: slog.NewJSONHandler(b, &slog.HandlerOptions{
 			Level:       opts.Level,
 			AddSource:   opts.AddSource,
@@ -24,7 +24,7 @@ func NewColoredHandler(w io.Writer, opts *slog.HandlerOptions) *handlers.TextHan
 		M:    &sync.Mutex{},
 		Opts: opts,
 		W:    w,
-	}}
+	}
 }
 
 func NewJsonHandler(w io.Writer, opts *slog.HandlerOptions) *handlers.JsonHandler {
@@ -32,7 +32,7 @@ func NewJsonHandler(w io.Writer, opts *slog.HandlerOptions) *handlers.JsonHandle
 		opts = &slog.HandlerOptions{Level: slog.LevelDebug}
 	}
 	b := &bytes.Buffer{}
-	return &handlers.JsonHandler{BaseHandler: &handlers.BaseHandler{
+	return &handlers.JsonHandler{
 		H: slog.NewJSONHandler(b, &slog.HandlerOptions{
 			Level:       opts.Level,
 			AddSource:   opts.AddSource,
@@ -42,7 +42,7 @@ func NewJsonHandler(w io.Writer, opts *slog.HandlerOptions) *handlers.JsonHandle
 		M:    &sync.Mutex{},
 		Opts: opts,
 		W:    w,
-	}}
+	}
 }
 
 func Err(err error) slog.Attr {

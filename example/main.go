@@ -16,6 +16,8 @@ func main() {
 	consoleLogger.Warn("Warning test")
 	consoleLogger.Error("Error test")
 
+	consoleLogger.With(slog.String("test", "test")).Info("Test")
+
 	file, err := os.OpenFile("test.log", os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0644)
 	if err != nil {
 		panic(err)
