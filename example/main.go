@@ -27,4 +27,7 @@ func main() {
 	fileLogger := slog.New(prettylogger.NewJsonHandler(file, nil))
 	fileLogger.Debug("Debug test", prettylogger.Err(fmt.Errorf("test error")))
 	fileLogger.Error("Error test")
+
+	discardLogger := slog.New(prettylogger.NewDiscardHandler())
+	discardLogger.Info("Nothing")
 }

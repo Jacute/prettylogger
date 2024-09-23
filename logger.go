@@ -45,6 +45,10 @@ func NewJsonHandler(w io.Writer, opts *slog.HandlerOptions) *handlers.JsonHandle
 	}
 }
 
+func NewDiscardHandler() *handlers.DiscardHandler {
+	return &handlers.DiscardHandler{}
+}
+
 func Err(err error) slog.Attr {
 	return slog.Attr{
 		Key:   "error",
